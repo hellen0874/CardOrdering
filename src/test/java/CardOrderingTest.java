@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CardOrderingTest {
     private WebDriver driver;
@@ -57,7 +58,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79007777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        String actual = driver.findElement(By.className("[data-test-id='Input_invalid']")).getText();
+        String actual = driver.findElement(By.className("[data-test-id='name'.input_invalid .input__sub]")).getText();
         assertEquals("Имя и Фамилия указаны неверно. Допустимы только русские буквы, пробелы и дефисы.", actual.trim());
     }
     // тест 2 - невозможность отправки пустого имени
@@ -77,7 +78,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("7900777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        String actual = driver.findElement(By.className("[data-test-id='Input_invalid']")).getText();
+        String actual = driver.findElement(By.className("[data-test-id=phone].input_invalid .input__sub")).getText();
         assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +7912345678.", actual.trim());
     }
     // тест 4 - невозможность отправки пустого номера телефона
@@ -88,6 +89,14 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
         String actual = driver.findElement(By.className("[data-test-id='phone'.input_invalid .input__sub]")).getText();
-        assertEquals("Имя и Фамилия указаны неверно. Допустимы только русские буквы, пробелы и дефисы.", actual.trim());
+        assertEquals("Поле обязательно для заполнения", actual.trim());
+            }
+    // тест 5 - невозможность отправки без отметки чекбокса
+    @Test
+    void shouldNotTakeEmptyCheckboxTest() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов-Петров Александр");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79007777777");
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertTrue(driver.findElement(By.cssSelector("[data-test-id='agreement'].input_invalid")).isDisplayed());
     }
 }
