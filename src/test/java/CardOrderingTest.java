@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
         String actual = driver.findElement(By.className("[data-test-id=phone].input_invalid .input__sub")).getText();
-        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +7912345678.", actual.trim());
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", actual.trim());
     }
     // тест 4 - невозможность отправки пустого номера телефона
     @Test
