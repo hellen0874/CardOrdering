@@ -40,15 +40,12 @@ public class CardOrderingTest {
     }
 
     @Test
-    void shouldTestV1() {
-        List<WebElement> elements = driver.findElements(By.className("input__control"));
-        elements.get(0).sendKeys("Василий");
-        elements.get(1).sendKeys("+79270000000");
-        driver.findElement(By.className("checkbox__box")).click();
-        driver.findElement(By.className("button")).click();
-        String text = driver.findElement(By.className("alert-success")).getText();
-        assertEquals("Ваша заявка успешно отправлена!", text.trim());
+    void shouldPassPositiveTest() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов-Петров Александр");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79007777777");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        String actual = driver.findElement(By.className("[data-test-id='order-success']")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actual.trim());
     }
-
-
 }
