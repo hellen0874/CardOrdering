@@ -1,4 +1,4 @@
-package ru.netology.rest;
+package ru.netology;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
