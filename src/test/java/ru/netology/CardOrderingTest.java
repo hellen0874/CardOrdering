@@ -48,7 +48,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79007777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        String actual = driver.findElement(By.className("[data-test-id='order-success']")).getText();
+        String actual = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actual.trim());
     }
     // Задание 2.
@@ -59,7 +59,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79007777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        String actual = driver.findElement(By.className("[data-test-id='name'.input_invalid .input__sub]")).getText();
+        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub")).getText();
         assertEquals("Имя и Фамилия указаны неверно. Допустимы только русские буквы, пробелы и дефисы.", actual.trim());
     }
     // тест 2 - невозможность отправки пустого имени
@@ -69,7 +69,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79007777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        String actual = driver.findElement(By.cssSelector("[data-test-id='name'.input_invalid .input__sub]")).getText();
+        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub")).getText();
         assertEquals("Поле обязательно для заполнения", actual.trim());
     }
     // тест 3 - невозможность отправки некорректного номера телефона
@@ -79,7 +79,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("7900777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        String actual = driver.findElement(By.className("[data-test-id=phone].input_invalid .input__sub")).getText();
+        String actual = driver.findElement(By.cssSelector("[data-test-id=phone].input_invalid .input__sub")).getText();
         assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", actual.trim());
     }
     // тест 4 - невозможность отправки пустого номера телефона
@@ -89,7 +89,7 @@ public class CardOrderingTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        String actual = driver.findElement(By.className("[data-test-id='phone'.input_invalid .input__sub]")).getText();
+        String actual = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid .input__sub")).getText();
         assertEquals("Поле обязательно для заполнения", actual.trim());
             }
     // тест 5 - невозможность отправки без отметки чекбокса
